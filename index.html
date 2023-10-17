@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game</title>
+    <link rel="stylesheet" href="./Css/styles.css" />
+    <script src="./js/game.js" defer></script>
+  </head>
+  <body>
+    <div id="logg-inn">
+      <input type="text" id="nameify" placeholder="Enter name" value="" />
+
+      <select name="gender" id="gender-el">
+        <option value="none"></option>
+        <option value="male">male</option>
+        <option value="female">female</option>
+        <option value="non-binary">non-binary</option>
+        <option value="do not wish to input">do not wish to input</option>
+      </select>
+
+      <button id="start-game">Start</button>
+    </div>
+
+    <div id="game">
+      <div id="inv-btn" class="inv-buttons">III</div>
+      <div id="menu-card">
+        <div class="row">
+          <div id="close-btn" class="inv-buttons">X</div>
+          <h1>Inventory</h1>
+        </div>
+
+        <div id="placements">
+          <p id="statlvl"></p>
+          <p id="gold-el">gold: 0</p>
+          <p id="xp-el">XP 0/0</p>
+        </div>
+        <div id="inventory"></div>
+
+        <h1>Stats</h1>
+        <div id="stats-el">
+          <div id="player-health"><p></p></div>
+          <div id="player-damage"><p></p></div>
+          <div id="player-healing"><p></p></div>
+        </div>
+      </div>
+
+      <button id="forth">venture forth</button>
+      <progress id="enemy-bar" max="" value=""></progress>
+      <div id="enemy">
+        <img src="" alt="" id="enemy-img" />
+      </div>
+      <div id="boss-fight2">Start mini boss</div>
+      <div id="boss-fight">Start Boss</div>
+
+      <div id="debug-menu">
+        <button id="godmode">GodMode</button>
+        <button id="instant-kill">Instant kill</button>
+      </div>
+
+      <div id="actions">
+        <div class="column">
+          <progress id="health-bar" max="100" value="100"></progress>
+          <div class="row">
+            <div class="action-btn" id="attack"><p>Attack</p></div>
+            <div class="action-btn" id="run"><p>Run</p></div>
+            <div class="action-btn" id="heal"><p>Heal</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
