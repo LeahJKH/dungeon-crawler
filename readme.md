@@ -1,5 +1,12 @@
 # dungeon-crawler
 
+ver 1.6.1
+-fixed img glitch AGAIN ;(
+-minor tweaks
+-big overhaul on code
+
+---
+
 ver 1.6
 -added new enemy
 -fixed music playing forever even when enemie was dead

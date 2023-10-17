@@ -114,7 +114,6 @@ button {
   color: rgb(151, 122, 48);
 }
 #enemy {
-  display: none;
   justify-content: center;
   align-items: start;
 }
@@ -170,6 +169,7 @@ button {
   max-width: 400px;
   max-height: 400px;
   position: absolute;
+  display: none;
   top: 100px;
   left: 35%;
 }
