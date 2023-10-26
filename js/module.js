@@ -24,3 +24,42 @@ export const elements = {
   instantKill: document.querySelector("#instant-kill"),
   godMode: document.querySelector("#godmode"),
 };
+
+export const enemies = {
+  frankStats: {
+    name: "Frank",
+    damage: 5,
+    health: 50,
+    maxHealth: 50,
+    gold: 5,
+    xp: 5,
+    img: "./images/Frank.png",
+  },
+  bossEmil: {
+    name: "Emil",
+    health: 1000,
+    maxHealth: 1000,
+    damage: 50,
+    gold: 100,
+    xp: 100,
+    img: "./images/EmilBossTaunt.png",
+  },
+  randO: {
+    name: "Joe",
+    damage: 10,
+    health: 100,
+    maxHealth: 100,
+    gold: 10,
+    xp: 10,
+    img: "./images/Joe.webp",
+  },
+  gobelin: {
+    name: "Goblin",
+    damage: 100,
+    health: 250,
+    maxHealth: 250,
+    gold: 50,
+    xp: 20,
+    img: "./images/japaneseGoblin.png",
+  },
+};

@@ -1,4 +1,5 @@
 import { elements } from "./module.js";
+import { enemies } from "./module.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   // Define HTML elements
@@ -25,45 +26,6 @@ document.addEventListener("DOMContentLoaded", function () {
     gold: 0,
     xp: 0,
     level: 1,
-  };
-
-  const enemies = {
-    frankStats: {
-      name: "Frank",
-      damage: 5,
-      health: 50,
-      maxHealth: 50,
-      gold: 5,
-      xp: 5,
-      img: "./images/Frank.png",
-    },
-    bossEmil: {
-      name: "Emil",
-      health: 1000,
-      maxHealth: 1000,
-      damage: 50,
-      gold: 100,
-      xp: 100,
-      img: "./images/EmilBossTaunt.png",
-    },
-    randO: {
-      name: "Joe",
-      damage: 10,
-      health: 100,
-      maxHealth: 100,
-      gold: 10,
-      xp: 10,
-      img: "./images/Joe.webp",
-    },
-    gobelin: {
-      name: "Goblin",
-      damage: 100,
-      health: 250,
-      maxHealth: 250,
-      gold: 50,
-      xp: 20,
-      img: "./images/japaneseGoblin.png",
-    },
   };
 
   let currentEnemy = null;
@@ -253,22 +215,3 @@ document.addEventListener("DOMContentLoaded", function () {
     updateUI();
   });
 });
-
-/*
-startGame.addEventListener("click", function () {
-  logInn.style.display = "none";
-  gameify.style.display = "flex";
-  act.style.display = "none";
-  enemy.style.display = "none";
-  goForward.style.display = "flex";
-  bossFight.style.display = "flex";
-  enemyBar.style.display = "none";
-  takeDamage.value = player.health;
-  statLevel.textContent = `LVL: ${player.level}`;
-  experience.textContent = `XP ${player.xp}/${levelUp}`;
-
-  healthResetEn();
-  fightEndedDisplay();
-  redoInv();
-});
-*/
