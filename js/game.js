@@ -1,31 +1,18 @@
+import { elements } from "./module.js";
+
 document.addEventListener("DOMContentLoaded", function () {
   // Define HTML elements
-  const elements = {
-    logInn: document.getElementById("logg-inn"),
-    gameify: document.getElementById("game"),
-    startGame: document.getElementById("start-game"),
-    inventory: document.querySelector("#menu-card"),
-    attack: document.querySelector("#attack"),
-    escape: document.querySelector("#run"),
-    healed: document.querySelector("#heal"),
-    goForward: document.querySelector("#forth"),
-    act: document.querySelector("#actions"),
-    invBtn: document.querySelector("#inv-btn"),
-    closeBtn: document.querySelector("#close-btn"),
-    statLevel: document.querySelector("#statlvl"),
-    statInv: document.querySelector("#stats-el"),
-    bossFight: document.querySelector("#boss-fight"),
-    goblinFight: document.querySelector("#boss-fight2"),
-    nameEr: document.querySelector("#nameify"),
-    gender: document.querySelector("#gender-el"),
-    goldPage: document.querySelector("#gold-el"),
-    experience: document.querySelector("#xp-el"),
-    takeDamage: document.querySelector("#health-bar"),
-    enemyBar: document.querySelector("#enemy-bar"),
-    enemyPlace: document.querySelector("#enemy-img"),
-    instantKill: document.querySelector("#instant-kill"),
-    godMode: document.querySelector("#godmode"),
-  };
+
+  function redoInv() {
+    elements.playerDmg = document.querySelector("#player-damage");
+    elements.pHel = document.querySelector("#player-health");
+    elements.pHeal = document.querySelector("#player-healing");
+
+    elements.playerDmg.textContent = `Damage: ${player.damage}`;
+    elements.pHel.textContent = `Health: ${player.maxHealth}`;
+    elements.pHeal.textContent = `Healing: ${player.healing}`;
+  }
+
   const bossMusic = new Audio("./sound/Emil_Bossmusic.wav");
   // Character and enemy data
   const player = {
@@ -90,17 +77,13 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initialize the game
   // Initialize the game
   function initializeGame() {
-    if ((elements.logInn.style.display = "flex")) {
-      elements.logInn.style.display = "none";
-    }
-    if ((elements.gameify.style.display = "none")) {
-      elements.gameify.style.display = "flex";
-    }
-    player.name = "";
-    player.gender = "";
-    if (elements.statInv) {
-      elements.statInv.innerHTML = "";
-    }
+    redoInv();
+    elements.logInn.style.display = "none";
+    elements.gameify.style.display = "flex";
+    player.name = elements.nameEr.value;
+    player.gender = elements.gender.value;
+    elements.statInv.innerHTML += `<p>Name: ${player.name}</p>`;
+    elements.statInv.innerHTML += `<p>gender: ${player.gender}</p>`;
     player.xp = 0;
     player.level = 1;
     player.damage = 10;
@@ -108,19 +91,22 @@ document.addEventListener("DOMContentLoaded", function () {
     player.maxHealth = 100;
     resetHealth(player);
     updateUI();
-    if ((elements.act.style.display = "flex")) {
-      elements.act.style.display = "none";
-    }
-    if ((elements.enemyPlace.style.display = "flex")) {
-      elements.enemyPlace.style.display = "none";
-    }
     currentEnemy = null;
   }
+
   function cleanArena() {
     if ((elements.enemyPlace.style.display = "none")) {
       elements.enemyPlace.style.display = "flex";
       elements.act.style.display = "flex";
       elements.goForward.style.display = "none";
+      elements.bossFight.style.display = "none";
+      elements.goblinFight.style.display = "none";
+    } else {
+      elements.enemyPlace.style.display = "none";
+      elements.act.style.display = "none";
+      elements.goForward.style.display = "flex";
+      elements.bossFight.style.display = "flex";
+      elements.goblinFight.style.display = "flex";
     }
   }
 
@@ -129,15 +115,13 @@ document.addEventListener("DOMContentLoaded", function () {
     elements.takeDamage.value = player.health;
     elements.statLevel.textContent = `LVL: ${player.level}`;
     elements.experience.textContent = `XP ${player.xp}/${levelUp}`;
-    elements.statInv.innerHTML = `<p>Name: ${player.name}</p>`;
-    elements.statInv.innerHTML += `<p>Gender: ${player.gender}</p>`;
     elements.goldPage.textContent = `Gold: ${player.gold}`;
+    redoInv();
   }
 
   // Handle fight start
   function startFight(enemy) {
     currentEnemy = enemy;
-    elements.act.style.display = "flex";
     elements.enemyPlace.src = enemy.img;
     elements.enemyBar.max = enemy.maxHealth;
     elements.enemyBar.value = enemy.health;
@@ -163,24 +147,21 @@ document.addEventListener("DOMContentLoaded", function () {
   function checkWho(num) {
     if (num === 1) {
       startFight(enemies.frankStats);
-      frank = true;
       elements.enemyPlace.style.left = "35%";
     } else if (num === 2) {
-      Joe = true;
       startFight(enemies.randO);
       elements.enemyPlace.style.left = "35%";
       elements.enemyPlace.style.width = "400px";
     } else if (num === 3) {
-      emil = true;
       startFight(enemies.bossEmil);
       elements.enemyPlace.style.left = "40%";
       bossMusic.play();
     } else if (num === 4) {
-      japaneseGoblin = true;
       startFight(enemies.gobelin);
       elements.enemyPlace.style.left = "40%";
       bossMusic.play();
     } else {
+      console.log("error with enemy");
     }
     elements.enemyBar.style.display = "flex";
   }
@@ -192,7 +173,7 @@ document.addEventListener("DOMContentLoaded", function () {
       updateUI();
 
       if (player.health <= 0) {
-        Restarter();
+        location.href = "./gameover.html";
       }
     }
   }
@@ -203,6 +184,7 @@ document.addEventListener("DOMContentLoaded", function () {
     player.xp += enemy.xp;
     levelUp = player.level * 10;
     updateUI();
+    cleanArena();
     resetHealth(enemy);
     elements.enemyPlace.style.display = "none";
     elements.goForward.style.display = "flex";
@@ -271,3 +253,22 @@ document.addEventListener("DOMContentLoaded", function () {
     updateUI();
   });
 });
+
+/*
+startGame.addEventListener("click", function () {
+  logInn.style.display = "none";
+  gameify.style.display = "flex";
+  act.style.display = "none";
+  enemy.style.display = "none";
+  goForward.style.display = "flex";
+  bossFight.style.display = "flex";
+  enemyBar.style.display = "none";
+  takeDamage.value = player.health;
+  statLevel.textContent = `LVL: ${player.level}`;
+  experience.textContent = `XP ${player.xp}/${levelUp}`;
+
+  healthResetEn();
+  fightEndedDisplay();
+  redoInv();
+});
+*/
