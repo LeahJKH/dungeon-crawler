@@ -36,14 +36,12 @@ document.addEventListener("DOMContentLoaded", function () {
     entity.health = entity.maxHealth;
   }
 
-  // Initialize the game
-  // Initialize the game
+  initializeGame();
+
   function initializeGame() {
     redoInv();
-    elements.logInn.style.display = "none";
-    elements.gameify.style.display = "flex";
-    player.name = elements.nameEr.value;
-    player.gender = elements.gender.value;
+    player.name = sessionStorage.getItem("userName");
+    player.gender = sessionStorage.getItem("userGender");
     elements.statInv.innerHTML += `<p>Name: ${player.name}</p>`;
     elements.statInv.innerHTML += `<p>gender: ${player.gender}</p>`;
     player.xp = 0;
@@ -171,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Event listeners
-  elements.startGame.addEventListener("click", initializeGame);
+
   elements.goForward.addEventListener("click", () => {
     if (!currentEnemy) {
       getEnemy();

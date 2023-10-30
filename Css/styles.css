@@ -132,9 +132,7 @@ button {
   transform: translate(0, -50%);
   top: 80%;
 }
-#game {
-  display: none;
-}
+
 #health-bar {
   border: black solid 2px;
   width: 260px;

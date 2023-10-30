@@ -2,6 +2,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const restart = document.querySelector("#restart");
 
   restart.addEventListener("click", function () {
-    location.href = "./index.html";
+    if (sessionStorage.getItem("userName") != "") {
+      location.href = "./game.html";
+    } else {
+      location.href = "./index.html";
+    }
   });
 });
