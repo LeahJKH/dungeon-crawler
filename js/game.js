@@ -55,24 +55,26 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function cleanArena() {
-    if ((elements.enemyPlace.style.display = "none")) {
-      elements.enemyPlace.style.display = "flex";
-      elements.act.style.display = "flex";
-      elements.goForward.style.display = "none";
-      elements.bossFight.style.display = "none";
-      elements.goblinFight.style.display = "none";
-    } else {
-      elements.enemyPlace.style.display = "none";
-      elements.act.style.display = "none";
-      elements.goForward.style.display = "flex";
-      elements.bossFight.style.display = "flex";
-      elements.goblinFight.style.display = "flex";
-    }
+    elements.enemyPlace.style.display = "flex";
+    elements.act.style.display = "flex";
+    elements.goForward.style.display = "none";
+    elements.bossFight.style.display = "none";
+    elements.goblinFight.style.display = "none";
+    elements.enemyBar.style.display = "flex";
+  }
+  function removeArena() {
+    elements.enemyPlace.style.display = "none";
+    elements.act.style.display = "none";
+    elements.goForward.style.display = "flex";
+    elements.bossFight.style.display = "flex";
+    elements.goblinFight.style.display = "flex";
+    elements.enemyBar.style.display = "none";
   }
 
   // Update the UI with player and enemy data
   function updateUI() {
     elements.takeDamage.value = player.health;
+    elements.barHealth.textContent = `${player.health}/${player.maxHealth}`;
     elements.statLevel.textContent = `LVL: ${player.level}`;
     elements.experience.textContent = `XP ${player.xp}/${levelUp}`;
     elements.goldPage.textContent = `Gold: ${player.gold}`;
@@ -123,7 +125,13 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       console.log("error with enemy");
     }
-    elements.enemyBar.style.display = "flex";
+  }
+  function runAway() {
+    removeArena();
+    currentEnemy = null;
+
+    bossMusic.pause();
+    resetHealth(currentEnemy);
   }
   // Handle enemy's attack
   function handleEnemyAttack(enemy) {
@@ -144,13 +152,8 @@ document.addEventListener("DOMContentLoaded", function () {
     player.xp += enemy.xp;
     levelUp = player.level * 10;
     updateUI();
-    cleanArena();
     resetHealth(enemy);
-    elements.enemyPlace.style.display = "none";
-    elements.goForward.style.display = "flex";
-    elements.bossFight.style.display = "flex";
-    elements.enemyBar.style.display = "none";
-    elements.act.style.display = "none";
+    removeArena();
     bossMusic.pause();
     currentEnemy = null;
     checkLevel();
@@ -170,6 +173,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Event listeners
 
+  elements.escape.addEventListener("click", function () {
+    runAway(currentEnemy);
+  });
   elements.goForward.addEventListener("click", () => {
     if (!currentEnemy) {
       getEnemy();
@@ -201,6 +207,10 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   elements.healed.addEventListener("click", () => {
     player.health += player.healing;
+    player.health -= currentEnemy.damage;
+    if (player.health <= 0) {
+      location.href = "./gameover.html";
+    }
     updateUI();
   });
   elements.godMode.addEventListener("click", () => {

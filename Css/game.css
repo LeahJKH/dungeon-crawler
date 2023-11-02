@@ -184,6 +184,12 @@ body {
   right: 20px;
   top: 110px;
 }
+#bar-health {
+  position: absolute;
+  bottom: 52%;
+  left: 44%;
+  color: white;
+}
 
 /*main game*/
 

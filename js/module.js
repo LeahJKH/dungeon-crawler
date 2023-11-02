@@ -1,4 +1,5 @@
 export const elements = {
+  barHealth: document.querySelector("#bar-health"),
   logInn: document.getElementById("logg-inn"),
   gameify: document.getElementById("game"),
   startGame: document.getElementById("start-game"),
@@ -39,7 +40,7 @@ export const enemies = {
     name: "Emil",
     health: 1000,
     maxHealth: 1000,
-    damage: 50,
+    damage: 500,
     gold: 100,
     xp: 100,
     img: "./images/EmilBossTaunt.png",
