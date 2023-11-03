@@ -1,5 +1,12 @@
 # dungeon-crawler
 
+ver 1.7
+-added run btn function
+-fixed healing
+-less code
+
+--- 
+
 ver 1.6.1
 -fixed img glitch AGAIN ;(
 -minor tweaks

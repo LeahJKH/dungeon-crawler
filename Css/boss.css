@@ -1,0 +1,218 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  background-image: url("../images/cave.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: black;
+  background-size: auto 100vh;
+}
+@media (orientation: landscape) {
+  body {
+    background-size: 100vw auto;
+  }
+}
+
+/*main game*/
+#placements {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#inv-btn {
+  display: flex;
+  color: white;
+  width: 50px;
+  height: 50px;
+  margin: 20px 20px;
+}
+.inv-buttons {
+  background-color: black;
+  border: white 2px solid;
+  border-radius: 50px;
+  justify-content: center;
+  align-items: center;
+  rotate: 90deg;
+  font-size: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+#close-btn {
+  display: flex;
+  color: red;
+  width: 40px;
+  height: 40px;
+  margin: 10px 10px;
+}
+#menu-card {
+  background-color: rgba(0, 0, 0, 0.38);
+  border: white 2px solid;
+  border-radius: 10px;
+  width: 230px;
+  height: 280px;
+  display: none;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  flex-direction: column;
+  color: white;
+}
+#emil-dialogbox {
+  background-color: rgba(0, 0, 0, 0.88);
+  border: white 2px solid;
+  border-radius: 10px;
+  width: 830px;
+  height: 280px;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 18%;
+  flex-direction: column;
+  color: white;
+  z-index: 3;
+  justify-content: center;
+  align-items: center;
+}
+#emil-dialog {
+  font-size: 30px;
+}
+#emil-title {
+  font-size: 35px;
+  text-decoration: underline;
+}
+
+.action-btn {
+  width: 80px;
+  height: 80px;
+  border-radius: 2px;
+  border: rgb(151, 122, 48) 2px solid;
+  background-color: black;
+  color: white;
+  display: flex;
+  position: static;
+  top: 100%;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s all;
+  margin: 100px 0 0 10px;
+}
+.action-btn:active {
+  width: 70px;
+  height: 70px;
+}
+.action-btn > p {
+  transition: 0.5s all;
+}
+.action-btn > p:hover {
+  color: rgb(151, 122, 48);
+}
+#enemy {
+  justify-content: center;
+  align-items: start;
+}
+#actions {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  position: absolute;
+  right: 39%;
+  transform: translate(0, -50%);
+  top: 80%;
+}
+
+#health-bar {
+  border: black solid 2px;
+  width: 260px;
+  height: 30px;
+  background-color: rgb(38, 37, 37);
+  position: absolute;
+  top: 35%;
+  left: 10px;
+  text-align: center;
+  color: white;
+}
+#health-bar::-webkit-progress-bar {
+  background-color: rgb(50, 49, 49);
+}
+#health-bar::-webkit-progress-value {
+  background-color: red;
+}
+#enemy-bar {
+  display: flex;
+  border: black solid 2px;
+  width: 360px;
+  height: 30px;
+  background-color: rgb(38, 37, 37);
+  position: absolute;
+  top: 10px;
+  left: 37%;
+  text-align: center;
+  color: white;
+}
+#enemy-bar::-webkit-progress-bar {
+  background-color: rgb(50, 49, 49);
+}
+#enemy-bar::-webkit-progress-value {
+  background-color: red;
+}
+
+#enemy-img {
+  max-width: 400px;
+  max-height: 400px;
+  position: absolute;
+  display: flex;
+  top: 100px;
+  left: 40%;
+}
+
+#bar-health {
+  position: absolute;
+  bottom: 52%;
+  left: 44%;
+  color: white;
+}
+
+/*main game*/
+
+/*common classes*/
+.row {
+  display: flex;
+  flex-direction: row;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+}
+/*common classes*/
+
+/*DEBUG*/
+#godmode,
+#instant-kill {
+  width: 100px;
+  height: 40px;
+  border: rgb(151, 122, 48) 2px solid;
+  background-color: black;
+  color: white;
+  display: flex;
+  text-align: center;
+}
+#godmode:hover,
+#instant-kill:hover {
+  color: rgb(151, 122, 48);
+}
+#debug-menu {
+  background-color: rgba(0, 0, 0, 0.654);
+  border: white 2px solid;
+  border-radius: 10px;
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  flex-direction: column;
+  color: white;
+}
+/*DEBUG*/

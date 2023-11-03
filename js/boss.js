@@ -2,11 +2,43 @@ import { elements } from "./module.js";
 import { enemies } from "./module.js";
 
 document.addEventListener("DOMContentLoaded", function () {
+  const emilNxtBtn = document.getElementById("emil-next");
+  const emilDialogBox = document.querySelector("#emil-dialogbox");
+  const emilDialog = document.querySelector("#emil-dialog");
+  let index = 0;
+  emilNxtBtn.addEventListener("click", function () {
+    index++;
+    newtxt();
+  });
+  function newtxt() {
+    if (index < 1) {
+      emilDialog.textContent = `din skrøpelige sak tror du kan slå meg? pathetic`;
+    } else if (index < 2) {
+      emilDialog.textContent = `du burde gå tilbake en modul`;
+    } else if (index < 3) {
+      emilDialog.textContent = `alt du har gjort hadde jeg gjort anderledes`;
+    } else if (index < 4) {
+      emilDialog.textContent = `du har ikke bare en skill issue du er en skill issue`;
+    } else if (index < 5) {
+      emilDialog.textContent = `skal du liksom slå meg?`;
+    } else if (index < 6) {
+      emilDialog.textContent = `du kan ikke engang CSS`;
+    } else if (index < 7) {
+      emilDialog.textContent = `jeg skal faile deg på alle portfolione du lager`;
+    } else if (index < 8) {
+      emilDialog.textContent = `ikke som om di var god fra starten av`;
+    } else if (index < 9) {
+      emilDialog.textContent = `*evil emil latter*`;
+    } else if (index < 10) {
+      emilDialog.textContent = `go ahead viss meg hva du kan`;
+    } else if (index < 11) {
+      emilDialog.textContent = `kansje du ikke blir kicket`;
+    } else if (index < 12) {
+      emilDialogBox.style.display = "none";
+    }
+  }
 
-
-
-
-
+  let currentEnemy = enemies.bossEmil;
   function redoInv() {
     elements.playerDmg = document.querySelector("#player-damage");
     elements.pHel = document.querySelector("#player-health");
@@ -31,47 +63,11 @@ document.addEventListener("DOMContentLoaded", function () {
     level: 1,
   };
 
-  let currentEnemy = null;
   let levelUp = player.level * 10;
 
   // Function to reset player and enemy health
   function resetHealth(entity) {
     entity.health = entity.maxHealth;
-  }
-
-  initializeGame();
-
-  function initializeGame() {
-    redoInv();
-    player.name = sessionStorage.getItem("userName");
-    player.gender = sessionStorage.getItem("userGender");
-    elements.statInv.innerHTML += `<p>Name: ${player.name}</p>`;
-    elements.statInv.innerHTML += `<p>gender: ${player.gender}</p>`;
-    player.xp = 0;
-    player.level = 1;
-    player.damage = 10;
-    player.health = 100;
-    player.maxHealth = 100;
-    resetHealth(player);
-    updateUI();
-    currentEnemy = null;
-  }
-
-  function cleanArena() {
-    elements.enemyPlace.style.display = "flex";
-    elements.act.style.display = "flex";
-    elements.goForward.style.display = "none";
-    elements.bossFight.style.display = "none";
-    elements.goblinFight.style.display = "none";
-    elements.enemyBar.style.display = "flex";
-  }
-  function removeArena() {
-    elements.enemyPlace.style.display = "none";
-    elements.act.style.display = "none";
-    elements.goForward.style.display = "flex";
-    elements.bossFight.style.display = "flex";
-    elements.goblinFight.style.display = "flex";
-    elements.enemyBar.style.display = "none";
   }
 
   // Update the UI with player and enemy data
@@ -85,11 +81,10 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Handle fight start
-  function startFight(enemy) {
-    currentEnemy = enemy;
-    elements.enemyPlace.src = enemy.img;
-    elements.enemyBar.max = enemy.maxHealth;
-    elements.enemyBar.value = enemy.health;
+  function startFight() {
+    elements.enemyPlace.src = currentEnemy.img;
+    elements.enemyBar.max = currentEnemy.maxHealth;
+    elements.enemyBar.value = currentEnemy.health;
   }
 
   // Handle player's attack
@@ -105,31 +100,10 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   }
-  function getEnemy() {
-    let enemyNum = Math.floor(Math.random() * 2 + 1);
-    checkWho(enemyNum);
-  }
-  function checkWho(num) {
-    if (num === 1) {
-      startFight(enemies.frankStats);
-      elements.enemyPlace.style.left = "35%";
-    } else if (num === 2) {
-      startFight(enemies.randO);
-      elements.enemyPlace.style.left = "35%";
-      elements.enemyPlace.style.width = "400px";
-    } else if (num === 4) {
-      startFight(enemies.gobelin);
-      elements.enemyPlace.style.left = "40%";
-      bossMusic.play();
-    } else {
-      console.log("error with enemy");
-    }
-  }
+  startFight(enemies.bossEmil);
+
   function runAway() {
-    removeArena();
-    resetHealth(currentEnemy);
-    currentEnemy = null;
-    bossMusic.pause();
+    location.href = "./game.html";
   }
   // Handle enemy's attack
   function handleEnemyAttack(enemy) {
@@ -149,12 +123,10 @@ document.addEventListener("DOMContentLoaded", function () {
     player.gold += enemy.gold;
     player.xp += enemy.xp;
     levelUp = player.level * 10;
-    updateUI();
     resetHealth(enemy);
-    removeArena();
-    bossMusic.pause();
     currentEnemy = null;
     checkLevel();
+    location.href = "./game.html";
   }
 
   // Check player's level and update stats
@@ -174,24 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
   elements.escape.addEventListener("click", function () {
     runAway(currentEnemy);
   });
-  elements.goForward.addEventListener("click", () => {
-    if (!currentEnemy) {
-      getEnemy();
-      cleanArena();
-    }
-  });
-  elements.bossFight.addEventListener("click", () => {
-    if (!currentEnemy) {
-      location.href = "./boss.html";
-    }
-  });
-  elements.goblinFight.addEventListener("click", () => {
-    if (!currentEnemy) {
-      startFight(enemies.gobelin);
-      checkWho(4);
-      cleanArena();
-    }
-  });
+
   elements.attack.addEventListener("click", playerAttack);
   elements.invBtn.addEventListener("click", () => {
     elements.inventory.style.display = "flex";

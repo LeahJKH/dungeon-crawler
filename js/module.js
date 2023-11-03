@@ -41,8 +41,8 @@ export const enemies = {
     health: 1000,
     maxHealth: 1000,
     damage: 500,
-    gold: 100,
-    xp: 100,
+    gold: 1000,
+    xp: 1000,
     img: "./images/EmilBossTaunt.png",
   },
   randO: {
