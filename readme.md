@@ -41,3 +41,10 @@ added:
 -debug
 -damage
 -shorter code
+
+---
+
+ver 1.4.1
+
+fixed boss music not playing at emil boss
+fixed inventory empty when you go too do the eemil boss

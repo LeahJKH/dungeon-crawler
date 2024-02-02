@@ -2,9 +2,19 @@ import { elements } from "./module.js";
 import { enemies } from "./module.js";
 
 document.addEventListener("DOMContentLoaded", function () {
+  function initializeGame() {
+    redoInv();
+    player.name = sessionStorage.getItem("userName");
+    player.gender = sessionStorage.getItem("userGender");
+    elements.statInv.innerHTML += `<p>Name: ${player.name}</p>`;
+    elements.statInv.innerHTML += `<p>gender: ${player.gender}</p>`;
+    updateUI();
+  }
+  
   const emilNxtBtn = document.getElementById("emil-next");
   const emilDialogBox = document.querySelector("#emil-dialogbox");
   const emilDialog = document.querySelector("#emil-dialog");
+  const bossMusic = new Audio("./sound/Emil_Bossmusic.wav");
   let index = 0;
   emilNxtBtn.addEventListener("click", function () {
     index++;
@@ -35,6 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
       emilDialog.textContent = `kansje du ikke blir kicket`;
     } else if (index < 12) {
       emilDialogBox.style.display = "none";
+      bossMusic.play()
     }
   }
 
@@ -49,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
     elements.pHeal.textContent = `Healing: ${player.healing}`;
   }
 
-  const bossMusic = new Audio("./sound/Emil_Bossmusic.wav");
+  
   // Character and enemy data
   const player = {
     name: "",
@@ -173,4 +184,5 @@ document.addEventListener("DOMContentLoaded", function () {
     player.damage = 10000000000000;
     updateUI();
   });
+  initializeGame()
 });
