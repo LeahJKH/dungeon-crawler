@@ -8,13 +8,16 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-color: black;
-  background-size: auto 100vh;
+
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 97vh;
+  overflow: hidden;
 }
-@media (orientation: landscape) {
-  body {
-    background-size: 100vw auto;
-  }
-}
+
 
 /*logg inn screen*/
 #logg-inn {
@@ -32,6 +35,8 @@ button {
   width: 200px;
   height: 50px;
   font-size: 20px;
+  background-color: rgba(240, 238, 238, 0.752);
+  border: 2px solid grey;
 }
 /*logg inn screen*/
 
