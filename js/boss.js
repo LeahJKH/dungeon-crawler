@@ -16,38 +16,17 @@ document.addEventListener("DOMContentLoaded", function () {
   const emilDialog = document.querySelector("#emil-dialog");
   const bossMusic = new Audio("./sound/Emil_Bossmusic.wav");
   let index = 0;
+  let emilDialogArr = [ `din skrøpelige sak tror du kan slå meg? pathetic`, `du burde gå tilbake en modul`, `alt du har gjort hadde jeg gjort anderledes`, `du har ikke bare en skill issue du er en skill issue`, `skal du liksom slå meg?`, `du kan ikke engang CSS`, `jeg skal faile deg på alle portfolione du lager`, `ikke som om di var god fra starten av`, `*evil emil latter*`, `go ahead viss meg hva du kan`, `kansje du ikke blir kicket`]
+  emilDialog.textContent = emilDialogArr[0]
   emilNxtBtn.addEventListener("click", function () {
     index++;
-    newtxt();
-  });
-  function newtxt() {
-    if (index < 1) {
-      emilDialog.textContent = `din skrøpelige sak tror du kan slå meg? pathetic`;
-    } else if (index < 2) {
-      emilDialog.textContent = `du burde gå tilbake en modul`;
-    } else if (index < 3) {
-      emilDialog.textContent = `alt du har gjort hadde jeg gjort anderledes`;
-    } else if (index < 4) {
-      emilDialog.textContent = `du har ikke bare en skill issue du er en skill issue`;
-    } else if (index < 5) {
-      emilDialog.textContent = `skal du liksom slå meg?`;
-    } else if (index < 6) {
-      emilDialog.textContent = `du kan ikke engang CSS`;
-    } else if (index < 7) {
-      emilDialog.textContent = `jeg skal faile deg på alle portfolione du lager`;
-    } else if (index < 8) {
-      emilDialog.textContent = `ikke som om di var god fra starten av`;
-    } else if (index < 9) {
-      emilDialog.textContent = `*evil emil latter*`;
-    } else if (index < 10) {
-      emilDialog.textContent = `go ahead viss meg hva du kan`;
-    } else if (index < 11) {
-      emilDialog.textContent = `kansje du ikke blir kicket`;
-    } else if (index < 12) {
+    emilDialog.textContent = emilDialogArr[index]
+        if (index < 12) {
       emilDialogBox.style.display = "none";
       bossMusic.play()
     }
-  }
+  });
+
 
   let currentEnemy = enemies.bossEmil;
   function redoInv() {
