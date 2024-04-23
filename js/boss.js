@@ -1,5 +1,4 @@
-import { elements } from "./module.js";
-import { enemies } from "./module.js";
+import { elements, enemies, emilBossDialog, player } from "./module.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   function initializeGame() {
@@ -20,35 +19,15 @@ document.addEventListener("DOMContentLoaded", function () {
     index++;
     newtxt();
   });
+
   function newtxt() {
-    if (index < 1) {
-      emilDialog.textContent = `din skrøpelige sak tror du kan slå meg? pathetic`;
-    } else if (index < 2) {
-      emilDialog.textContent = `du burde gå tilbake en modul`;
-    } else if (index < 3) {
-      emilDialog.textContent = `alt du har gjort hadde jeg gjort anderledes`;
-    } else if (index < 4) {
-      emilDialog.textContent = `du har ikke bare en skill issue du er en skill issue`;
-    } else if (index < 5) {
-      emilDialog.textContent = `skal du liksom slå meg?`;
-    } else if (index < 6) {
-      emilDialog.textContent = `du kan ikke engang CSS`;
-    } else if (index < 7) {
-      emilDialog.textContent = `jeg skal faile deg på alle portfolione du lager`;
-    } else if (index < 8) {
-      emilDialog.textContent = `ikke som om di var god fra starten av`;
-    } else if (index < 9) {
-      emilDialog.textContent = `*evil emil latter*`;
-    } else if (index < 10) {
-      emilDialog.textContent = `go ahead viss meg hva du kan`;
-    } else if (index < 11) {
-      emilDialog.textContent = `kansje du ikke blir kicket`;
-    } else if (index < 12) {
+    if (index < emilBossDialog.length) {
+      emilDialog.textContent = emilBossDialog[index];
+    } else {
       emilDialogBox.style.display = "none";
-      bossMusic.play()
+      bossMusic.play();
     }
   }
-
   let currentEnemy = enemies.bossEmil;
   function redoInv() {
     elements.playerDmg = document.querySelector("#player-damage");
@@ -62,17 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   
   // Character and enemy data
-  const player = {
-    name: "",
-    gender: "",
-    damage: 10,
-    health: 100,
-    maxHealth: 100,
-    healing: 5,
-    gold: 0,
-    xp: 0,
-    level: 1,
-  };
+
 
   let levelUp = player.level * 10;
 

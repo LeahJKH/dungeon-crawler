@@ -1,7 +1,5 @@
-import { elements } from "./module.js";
-import { enemies } from "./module.js";
+import { elements, player, enemies } from "./module.js";
 
-document.addEventListener("DOMContentLoaded", function () {
 
 
 
@@ -19,17 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const bossMusic = new Audio("./sound/Emil_Bossmusic.wav");
   // Character and enemy data
-  const player = {
-    name: "",
-    gender: "",
-    damage: 10,
-    health: 100,
-    maxHealth: 100,
-    healing: 5,
-    gold: 0,
-    xp: 0,
-    level: 1,
-  };
+ 
 
   let currentEnemy = null;
   let levelUp = player.level * 10;
@@ -218,4 +206,4 @@ document.addEventListener("DOMContentLoaded", function () {
     player.damage = 10000000000000;
     updateUI();
   });
-});
+
