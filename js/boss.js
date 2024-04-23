@@ -15,19 +15,18 @@ document.addEventListener("DOMContentLoaded", function () {
   const emilDialog = document.querySelector("#emil-dialog");
   const bossMusic = new Audio("./sound/Emil_Bossmusic.wav");
   let index = 0;
+  let emilDialogArr = [ `din skrøpelige sak tror du kan slå meg? pathetic`, `du burde gå tilbake en modul`, `alt du har gjort hadde jeg gjort anderledes`, `du har ikke bare en skill issue du er en skill issue`, `skal du liksom slå meg?`, `du kan ikke engang CSS`, `jeg skal faile deg på alle portfolione du lager`, `ikke som om di var god fra starten av`, `*evil emil latter*`, `go ahead viss meg hva du kan`, `kansje du ikke blir kicket`]
+  emilDialog.textContent = emilDialogArr[0]
   emilNxtBtn.addEventListener("click", function () {
     index++;
-    newtxt();
-  });
-
-  function newtxt() {
-    if (index < emilBossDialog.length) {
-      emilDialog.textContent = emilBossDialog[index];
-    } else {
+    emilDialog.textContent = emilDialogArr[index]
+        if (index < 12) {
       emilDialogBox.style.display = "none";
       bossMusic.play();
     }
-  }
+  });
+
+
   let currentEnemy = enemies.bossEmil;
   function redoInv() {
     elements.playerDmg = document.querySelector("#player-damage");
