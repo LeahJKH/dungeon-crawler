@@ -1,4 +1,4 @@
-import { elements, enemies, emilBossDialog, player } from "./module.js";
+import { elements, enemies, player } from "./module.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   function initializeGame() {
