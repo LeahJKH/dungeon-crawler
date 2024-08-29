@@ -53,3 +53,7 @@ ver 1.4.1<br>
 
 ver 1.4.2<br>
 -fixed some code that was repeated<br>
+
+---- <br>
+ver 2.0 <br>
+-huge re doing of the js making it more readable
