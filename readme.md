@@ -57,3 +57,4 @@ ver 1.4.2<br>
 ---- <br>
 ver 2.0 <br>
 -huge re doing of the js making it more readable
+-small comments here and there
